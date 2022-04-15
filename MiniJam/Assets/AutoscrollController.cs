@@ -6,6 +6,11 @@ public class AutoscrollController : MonoBehaviour
 {
     // TODO make this const for safety once we decide on a value
     public float CAMERA_SPEED = 1f; // Camera speed in UU per second
+    public BoxCollider2D left, right, top, deathPlaneColl2D;
+
+    // Used to draw collision boxes in editor
+    Color collColor = Color.blue;
+    Color deathPlaneColor = Color.red;
 
     // Start is called before the first frame update
     void Start()
@@ -18,5 +23,16 @@ public class AutoscrollController : MonoBehaviour
     {
         // Move the camera up slowly
         transform.position = new Vector3(transform.position.x, transform.position.y + (CAMERA_SPEED * Time.deltaTime), transform.position.z);
+    }
+
+    // Draw the OOB box in the editor
+    void OnDrawGizmos()
+    {
+        Gizmos.color = collColor;
+        Gizmos.DrawWireCube(left.transform.position, left.size);
+        Gizmos.DrawWireCube(right.transform.position, right.size);
+        Gizmos.DrawWireCube(top.transform.position, top.size);
+        Gizmos.color = deathPlaneColor;
+        Gizmos.DrawWireCube(deathPlaneColl2D.transform.position, deathPlaneColl2D.size);
     }
 }
