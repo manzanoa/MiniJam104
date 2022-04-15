@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FrogMovement : MonoBehaviour
 {
-    public float speed = 5;
+    public float speed;
 
     private void Update()
     {
