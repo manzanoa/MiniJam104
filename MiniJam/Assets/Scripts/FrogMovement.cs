@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FrogMovement : MonoBehaviour
 {
     public float speed;
+    public Text text;
+    private int movement;
+
+    private void Start()
+    {
+        movement = 0;
+    }
 
     private void Update()
     {
@@ -24,10 +32,12 @@ public class FrogMovement : MonoBehaviour
         {
             Move(Vector3.left);
         }
+        text.text = movement.ToString();
     }
 
     private void Move(Vector3 direction)
     {
         transform.position += (direction * speed);
+        movement++;
     }
 }
