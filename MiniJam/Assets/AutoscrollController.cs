@@ -12,12 +12,6 @@ public class AutoscrollController : MonoBehaviour
     Color collColor = Color.blue;
     Color deathPlaneColor = Color.red;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -35,4 +29,5 @@ public class AutoscrollController : MonoBehaviour
         Gizmos.color = deathPlaneColor;
         Gizmos.DrawWireCube(deathPlaneColl2D.transform.position, deathPlaneColl2D.size);
     }
+
 }
