@@ -9,6 +9,11 @@ public class FrogMovement : MonoBehaviour
     public Text text;
     public LineRenderer lr;
     public int segments;
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.07f;
+    public LayerMask ground;
+
+    public bool grounded;
     private int vertices;
     private int movement;
     private Vector3[] previewPositions;
@@ -23,6 +28,11 @@ public class FrogMovement : MonoBehaviour
 
     private void Update()
     {
+        // Test if the player is on the ground for animation-switching purposes
+        grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, ground);
+
+        // Movement 
+        // TODO revise to mouse system
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             Move(Vector3.up);
