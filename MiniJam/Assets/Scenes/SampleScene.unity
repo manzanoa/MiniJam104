@@ -178,6 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   text: {fileID: 1463469134}
+  lr: {fileID: 299183551}
+  segments: 50
 --- !u!212 &51613725
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -343,12 +345,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 1, y: 1, z: 0}
-  - {x: 2, y: 4, z: 0}
-  - {x: 3, y: 9, z: 0}
-  - {x: 4, y: 16, z: 0}
-  - {x: 5, y: 25, z: 0}
-  - {x: 6, y: 36, z: 0}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
