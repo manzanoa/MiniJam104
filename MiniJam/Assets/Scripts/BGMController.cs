@@ -5,9 +5,10 @@ using UnityEngine;
 public class BGMController : MonoBehaviour
 {
     public float t0 = 0, t1 = 0;
-    public AudioSource[] musicSources;
-    public const float loopPoint = 16.004f; // Time in the audio file to loop to (s)
-    public const float loopLength = 211.249f; // Duration of the loop (s)
+    public AudioClip audioClip;
+    public AudioSource[] musicSources = new AudioSource[2];
+    public float loopPoint; // Time in the audio file to loop to (s)
+    public float loopLength; // Duration of the loop (s)
     private double time;
     private int nextSource;
     private double nextEventTime;
@@ -15,9 +16,17 @@ public class BGMController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // musicSources[0].time = 200f;
+        loopLength = audioClip.length - loopPoint;
+
+        // create two audiosources
+        for (int i = 0; i < 2; i++)
+        {
+            musicSources[i] = gameObject.AddComponent<AudioSource>();
+            musicSources[i].clip = audioClip;
+        }
+
         musicSources[0].Play();
-        nextEventTime = AudioSettings.dspTime + loopPoint + loopLength - musicSources[0].time;
+        nextEventTime = AudioSettings.dspTime + loopPoint + loopLength;
         nextSource = 1;
     }
 
