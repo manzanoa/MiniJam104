@@ -35,7 +35,6 @@ public class FrogMovement : MonoBehaviour
         vertices = segments + 1;
         lr.positionCount = vertices;
         previewPositions = new Vector3[vertices];
-        movement = 3;
         text.text = movement.ToString();
         rb = GetComponent<Rigidbody2D>();
         gravity = -9.8f * rb.gravityScale;
@@ -114,7 +113,6 @@ public class FrogMovement : MonoBehaviour
 
         if(gameOver)
         {
-            
             GameObject gos = Instantiate(gameOverScreen, canvas.transform.position, Quaternion.identity);
             gos.GetComponent<Transform>().SetParent(canvas.transform);
         }
