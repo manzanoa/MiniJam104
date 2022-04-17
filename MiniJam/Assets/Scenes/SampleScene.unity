@@ -186,7 +186,10 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+  canvas: {fileID: 1955824764}
+  gameOverScreen: {fileID: 2149245479201688128, guid: 6d2969e1614d64a758cf0271499bcbdb, type: 3}
   grounded: 0
+  movement: 0
   jumpStrength: 9
 --- !u!212 &51613725
 SpriteRenderer:

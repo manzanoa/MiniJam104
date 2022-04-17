@@ -13,6 +13,7 @@ public class DeathPlane : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            
             GameObject gos = Instantiate(gameOverScreen, canvas.transform.position, Quaternion.identity);
             gos.GetComponent<Transform>().SetParent(canvas.transform);
             // TODO kill the player
