@@ -19,6 +19,7 @@ public class FrogMovement : MonoBehaviour
     private Vector3[] previewPositions;
     private Rigidbody2D rb;
     private float gravity;
+    public float jumpStrength = 8f; 
 
     private void Start()
     {
@@ -35,35 +36,21 @@ public class FrogMovement : MonoBehaviour
         // Test if the player is on the ground for animation-switching purposes
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, ground);
 
-        // Movement 
-        // TODO revise to mouse system
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Move(Vector3.up);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Move(Vector3.down);
-        }
-        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            Move(Vector3.right);
-        }
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Move(Vector3.left);
-        }
-        text.text = movement.ToString();
-
         // Get a normalized vector pointing towards the mouse cursor
         // **This can probably be used for movement as well (add a force to the RB in the direction specified by towardsCursor?)**
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-        Vector3 towardsCursor = mousePos - transform.position;
+        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+        Vector2 towardsCursor = mousePos2D - new Vector2(transform.position.x, transform.position.y);
         towardsCursor.Normalize();
 
         // Update the dashed line based on cursor position
         UpdatePreviewLine(towardsCursor);
+
+        // Movement 
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            rb.AddForce(towardsCursor * jumpStrength);
+        }
     }
 
     private void Move(Vector3 direction)
@@ -76,11 +63,10 @@ public class FrogMovement : MonoBehaviour
      * Draws a dashed curve in the direction of the mouse cursor.
      * This allows the player to see the path the frog will follow before they jump, to help maximize their limited jump resources. 
      */
-    private void UpdatePreviewLine(Vector3 dir)
+    private void UpdatePreviewLine(Vector2 dir)
     {
-        float jumpStrength = 8f; // TODO Make this reflective of the real physics force being added to the frog, this currently represents the initial velocity of the frog in... honestly I have no idea what the units are here
         float length = 3f;
-        Vector3 towardsTargetPos = dir * jumpStrength;
+        Vector2 towardsTargetPos = dir * jumpStrength;
 
         previewPositions[0] = transform.position;
 
@@ -94,7 +80,7 @@ public class FrogMovement : MonoBehaviour
             float vy = towardsTargetPos.y;
             // calculate the x and y positions at time t
             float x = vx * t;
-            float y = (0.5f * gravity * t * t) + (vy * t) + 0f;
+            float y = (0.5f * gravity * t * t) + (vy * t);
             // add the calculated position to the array
             previewPositions[i] = new Vector3(transform.position.x + x, transform.position.y + y, 0);
         }
