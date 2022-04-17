@@ -13,6 +13,8 @@ public class FrogMovement : MonoBehaviour
     public float groundCheckSideLength;
     public LayerMask ground;
     private Vector2 groundCheckBox;
+    private bool lastGrounded;
+    private Animator anim;
 
     public bool grounded;
     private int vertices;
@@ -34,6 +36,8 @@ public class FrogMovement : MonoBehaviour
         gravity = -9.8f * rb.gravityScale;
         jump = false;
         groundCheckBox = new Vector2(groundCheckSideLength, 0.2f);
+        lastGrounded = false;
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -56,7 +60,18 @@ public class FrogMovement : MonoBehaviour
         if (grounded && Input.GetKeyDown(KeyCode.Mouse0))
         {
             jump = true;
+            Debug.Log("jumped!");
+            anim.SetTrigger("Jump");
         }
+
+        // Check if we just landed and update anim
+        if (!lastGrounded && grounded)
+        {
+            Debug.Log("landed!");
+            anim.SetTrigger("Land");
+        }
+
+        lastGrounded = grounded;
     }
 
     void FixedUpdate()
