@@ -101,11 +101,4 @@ public class FrogMovement : MonoBehaviour
         // More efficient than setting each position individually, according to the unity docs
         lr.SetPositions(previewPositions);
     }
-
-    // Testing
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(groundCheck.position, groundCheckBox);
-    }
 }
