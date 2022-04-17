@@ -17,6 +17,8 @@ public class FrogMovement : MonoBehaviour
     private int vertices;
     private int movement;
     private Vector3[] previewPositions;
+    private Rigidbody2D rb;
+    private float gravity;
 
     private void Start()
     {
@@ -24,6 +26,8 @@ public class FrogMovement : MonoBehaviour
         lr.positionCount = vertices;
         previewPositions = new Vector3[vertices];
         movement = 0;
+        rb = GetComponent<Rigidbody2D>();
+        gravity = -9.8f * rb.gravityScale;
     }
 
     private void Update()
@@ -51,8 +55,15 @@ public class FrogMovement : MonoBehaviour
         }
         text.text = movement.ToString();
 
+        // Get a normalized vector pointing towards the mouse cursor
+        // **This can probably be used for movement as well (add a force to the RB in the direction specified by towardsCursor?)**
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        UpdatePreviewLine(new Vector3(mousePos.x, mousePos.y, 0));
+        mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+        Vector3 towardsCursor = mousePos - transform.position;
+        towardsCursor.Normalize();
+
+        // Update the dashed line based on cursor position
+        UpdatePreviewLine(towardsCursor);
     }
 
     private void Move(Vector3 direction)
@@ -63,30 +74,32 @@ public class FrogMovement : MonoBehaviour
 
     /*
      * Draws a dashed curve in the direction of the mouse cursor.
-     * This allows the player to see the path the frog will follow before they jump, to help maximize their limited jump resources.
-     * 
+     * This allows the player to see the path the frog will follow before they jump, to help maximize their limited jump resources. 
      */
-    private void UpdatePreviewLine(Vector3 targetPos)
+    private void UpdatePreviewLine(Vector3 dir)
     {
-        float jumpStrength = 1.5f; // TODO Make this reflective of the real physics force being added to the frog
+        float jumpStrength = 8f; // TODO Make this reflective of the real physics force being added to the frog, this currently represents the initial velocity of the frog in... honestly I have no idea what the units are here
         float length = 3f;
+        Vector3 towardsTargetPos = dir * jumpStrength;
 
         previewPositions[0] = transform.position;
 
         // Physics!
         for (int i = 1; i < previewPositions.Length; i++)
         {
-            float t = length * i / vertices;
-            Vector3 towardsTargetPos = targetPos - transform.position;
-            Vector3.Normalize(towardsTargetPos);
-            towardsTargetPos = towardsTargetPos * jumpStrength;
+            // This is the general equation for an object under constant acceleration applied to both x and y coords
+            float t = length * i / vertices; // we discretize t because we're drawing a bunch of short line segments rather than a true curve
+            // split the initial velocity into x and y components
             float vx = towardsTargetPos.x;
             float vy = towardsTargetPos.y;
+            // calculate the x and y positions at time t
             float x = vx * t;
-            float y = (0.5f * -9.8f * t * t) + (vy * t) + 0f; 
+            float y = (0.5f * gravity * t * t) + (vy * t) + 0f;
+            // add the calculated position to the array
             previewPositions[i] = new Vector3(transform.position.x + x, transform.position.y + y, 0);
         }
 
+        // More efficient than setting each position individually, according to the unity docs
         lr.SetPositions(previewPositions);
     }
 }
