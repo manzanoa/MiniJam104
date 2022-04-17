@@ -16,9 +16,13 @@ public class FrogMovement : MonoBehaviour
     private bool lastGrounded;
     private Animator anim;
 
+    public Canvas canvas;
+    public GameObject gameOverScreen;
+    public bool gameOver = false;
+
     public bool grounded;
     private int vertices;
-    private int movement;
+    public int movement;
     private Vector3[] previewPositions;
     private Rigidbody2D rb;
     private float gravity;
@@ -31,7 +35,8 @@ public class FrogMovement : MonoBehaviour
         vertices = segments + 1;
         lr.positionCount = vertices;
         previewPositions = new Vector3[vertices];
-        movement = 0;
+        movement = 3;
+        text.text = movement.ToString();
         rb = GetComponent<Rigidbody2D>();
         gravity = -9.8f * rb.gravityScale;
         jump = false;
@@ -62,32 +67,41 @@ public class FrogMovement : MonoBehaviour
         // since it's physics based, we handle the actual jump in FixedUpdate
         if (grounded && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("jumped!");
-            lr.enabled = false;
+            if(movement > 0)
+            {
+                Debug.Log("jumped!");
+                lr.enabled = false;
 
-            // Determine facing direction
-            float angle = Mathf.Atan2(Mathf.Abs(towardsCursor.y), towardsCursor.x) * Mathf.Rad2Deg;
-            Debug.Log(angle);
-            if (angle > 100) // left
-            {
-                anim.SetBool("IsForward", false);
-                anim.SetBool("IsLeft", true);
-                anim.SetBool("IsRight", false);
-            }
-            else if (angle < 80) // right
-            {
-                anim.SetBool("IsForward", false);
-                anim.SetBool("IsLeft", false);
-                anim.SetBool("IsRight", true);
-            }
-            else // forward
-            {
-                anim.SetBool("IsForward", true);
-                anim.SetBool("IsLeft", false);
-                anim.SetBool("IsRight", false);
-            }
+                // Determine facing direction
+                float angle = Mathf.Atan2(Mathf.Abs(towardsCursor.y), towardsCursor.x) * Mathf.Rad2Deg;
+                Debug.Log(angle);
+                if (angle > 100) // left
+                {
+                    anim.SetBool("IsForward", false);
+                    anim.SetBool("IsLeft", true);
+                    anim.SetBool("IsRight", false);
+                }
+                else if (angle < 80) // right
+                {
+                    anim.SetBool("IsForward", false);
+                    anim.SetBool("IsLeft", false);
+                    anim.SetBool("IsRight", true);
+                }
+                else // forward
+                {
+                    anim.SetBool("IsForward", true);
+                    anim.SetBool("IsLeft", false);
+                    anim.SetBool("IsRight", false);
+                }
 
-            anim.SetTrigger("Jump");
+                anim.SetTrigger("Jump");
+                movement--;
+            }
+            else
+            {
+                gameOver = true;
+            }
+            
         }
 
         // Check if we just landed and update anim
@@ -98,7 +112,15 @@ public class FrogMovement : MonoBehaviour
             lr.enabled = true;
         }
 
+        if(gameOver)
+        {
+            
+            GameObject gos = Instantiate(gameOverScreen, canvas.transform.position, Quaternion.identity);
+            gos.GetComponent<Transform>().SetParent(canvas.transform);
+        }
+
         lastGrounded = grounded;
+        text.text = movement.ToString();
     }
 
     void FixedUpdate()
@@ -107,13 +129,14 @@ public class FrogMovement : MonoBehaviour
         // left: 18
         // right: 18
 
-        // Jump
+        // Jump when there are moves left
         if (jump)
         {
             jump = false;
             rb.AddForce(towardsCursor * jumpStrength, ForceMode2D.Impulse);
-            movement++;
+            
         }
+
     }
 
     // Listens for events from the animation.
