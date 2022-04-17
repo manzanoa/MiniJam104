@@ -10,8 +10,9 @@ public class FrogMovement : MonoBehaviour
     public LineRenderer lr;
     public int segments;
     public Transform groundCheck;
-    public float groundCheckRadius = 0.07f;
+    public float groundCheckSideLength;
     public LayerMask ground;
+    private Vector2 groundCheckBox;
 
     public bool grounded;
     private int vertices;
@@ -19,7 +20,9 @@ public class FrogMovement : MonoBehaviour
     private Vector3[] previewPositions;
     private Rigidbody2D rb;
     private float gravity;
-    public float jumpStrength = 8f; 
+    private Vector2 towardsCursor;
+    private bool jump;
+    public float jumpStrength = 8f; // The force to apply to the frog when it jumps
 
     private void Start()
     {
@@ -29,34 +32,44 @@ public class FrogMovement : MonoBehaviour
         movement = 0;
         rb = GetComponent<Rigidbody2D>();
         gravity = -9.8f * rb.gravityScale;
+        jump = false;
+        groundCheckBox = new Vector2(groundCheckSideLength, 0.2f);
     }
 
     private void Update()
     {
         // Test if the player is on the ground for animation-switching purposes
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, ground);
+        grounded = Physics2D.OverlapBox(groundCheck.position, groundCheckBox, 0, ground) != null;
 
         // Get a normalized vector pointing towards the mouse cursor
         // **This can probably be used for movement as well (add a force to the RB in the direction specified by towardsCursor?)**
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-        Vector2 towardsCursor = mousePos2D - new Vector2(transform.position.x, transform.position.y);
+        towardsCursor = mousePos2D - new Vector2(transform.position.x, transform.position.y);
         towardsCursor.Normalize();
 
         // Update the dashed line based on cursor position
-        UpdatePreviewLine(towardsCursor);
+        if (grounded) {
+            UpdatePreviewLine(towardsCursor);
+        }
 
         // Movement 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        // since it's physics based, we handle the actual jump in FixedUpdate
+        if (grounded && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            rb.AddForce(towardsCursor * jumpStrength);
+            jump = true;
         }
     }
 
-    private void Move(Vector3 direction)
+    void FixedUpdate()
     {
-        transform.position += (direction * speed);
-        movement++;
+        // Jump
+        if (jump)
+        {
+            jump = false;
+            rb.AddForce(towardsCursor * jumpStrength, ForceMode2D.Impulse);
+            movement++;
+        }
     }
 
     /*
@@ -87,5 +100,12 @@ public class FrogMovement : MonoBehaviour
 
         // More efficient than setting each position individually, according to the unity docs
         lr.SetPositions(previewPositions);
+    }
+
+    // Testing
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(groundCheck.position, groundCheckBox);
     }
 }
