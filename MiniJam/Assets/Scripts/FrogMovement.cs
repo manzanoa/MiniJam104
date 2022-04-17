@@ -49,9 +49,7 @@ public class FrogMovement : MonoBehaviour
         towardsCursor.Normalize();
 
         // Update the dashed line based on cursor position
-        if (grounded) {
-            UpdatePreviewLine(towardsCursor);
-        }
+        UpdatePreviewLine(towardsCursor);
 
         // Movement 
         // since it's physics based, we handle the actual jump in FixedUpdate
