@@ -61,8 +61,8 @@ public class FrogMovement : MonoBehaviour
         // since it's physics based, we handle the actual jump in FixedUpdate
         if (grounded && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            // jump = true;
             Debug.Log("jumped!");
+            lr.enabled = false;
 
             // Determine facing direction
             float angle = Mathf.Atan2(towardsCursor.y, towardsCursor.x) * Mathf.Rad2Deg;
@@ -94,6 +94,7 @@ public class FrogMovement : MonoBehaviour
         {
             Debug.Log("landed!");
             anim.SetTrigger("Land");
+            lr.enabled = true;
         }
 
         lastGrounded = grounded;
@@ -135,6 +136,8 @@ public class FrogMovement : MonoBehaviour
         for (int i = 1; i < previewPositions.Length; i++)
         {
             // This is the general equation for an object under constant acceleration applied to both x and y coords
+            // x = 1/2at^2 + v0t + x0
+            // x0 is always 0, since we're starting at the frog's location
             float t = length * i / vertices; // we discretize t because we're drawing a bunch of short line segments rather than a true curve
             // split the initial velocity into x and y components
             float vx = towardsTargetPos.x;
