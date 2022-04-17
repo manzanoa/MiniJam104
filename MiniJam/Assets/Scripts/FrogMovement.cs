@@ -42,6 +42,8 @@ public class FrogMovement : MonoBehaviour
 
     private void Update()
     {
+        anim.ResetTrigger("Land");
+
         // Test if the player is on the ground for animation-switching purposes
         grounded = Physics2D.OverlapBox(groundCheck.position, groundCheckBox, 0, ground) != null;
 
@@ -59,8 +61,31 @@ public class FrogMovement : MonoBehaviour
         // since it's physics based, we handle the actual jump in FixedUpdate
         if (grounded && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            jump = true;
+            // jump = true;
             Debug.Log("jumped!");
+
+            // Determine facing direction
+            float angle = Mathf.Atan2(towardsCursor.y, towardsCursor.x) * Mathf.Rad2Deg;
+            Debug.Log(angle);
+            if (angle > 100) // left
+            {
+                anim.SetBool("IsForward", false);
+                anim.SetBool("IsLeft", true);
+                anim.SetBool("IsRight", false);
+            }
+            else if (angle < 80) // right
+            {
+                anim.SetBool("IsForward", false);
+                anim.SetBool("IsLeft", false);
+                anim.SetBool("IsRight", true);
+            }
+            else // forward
+            {
+                anim.SetBool("IsForward", true);
+                anim.SetBool("IsLeft", false);
+                anim.SetBool("IsRight", false);
+            }
+
             anim.SetTrigger("Jump");
         }
 
@@ -76,6 +101,10 @@ public class FrogMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        // front: frame 12
+        // left: 18
+        // right: 18
+
         // Jump
         if (jump)
         {
@@ -83,6 +112,12 @@ public class FrogMovement : MonoBehaviour
             rb.AddForce(towardsCursor * jumpStrength, ForceMode2D.Impulse);
             movement++;
         }
+    }
+
+    // Listens for events from the animation.
+    public void Jump()
+    {
+        jump = true;
     }
 
     /*
