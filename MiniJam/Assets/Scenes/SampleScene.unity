@@ -188,6 +188,7 @@ MonoBehaviour:
     m_Bits: 64
   canvas: {fileID: 1955824764}
   gameOverScreen: {fileID: 2149245479201688128, guid: 6d2969e1614d64a758cf0271499bcbdb, type: 3}
+  gameOver: 0
   grounded: 0
   movement: 0
   jumpStrength: 9
@@ -1292,6 +1293,7 @@ MonoBehaviour:
   right: {fileID: 1143919578}
   top: {fileID: 754939932}
   deathPlaneColl2D: {fileID: 1023829758}
+  frog: {fileID: 51613722}
 --- !u!1 &1219509024
 GameObject:
   m_ObjectHideFlags: 0
