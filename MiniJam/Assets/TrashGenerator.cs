@@ -9,7 +9,7 @@ public class TrashGenerator : MonoBehaviour
     public GameObject frog;
     public float time = 10;
 
-    private void Start()
+    public void StartTrash()
     {
         StartCoroutine(trashSpawn());
     }

@@ -12,6 +12,8 @@ public class AutoscrollController : MonoBehaviour
     public GameObject AmbientController;
     private int moveCamera = 0;
 
+    public TrashGenerator trashGenerator;
+
     // Used to draw collision boxes in editor
     Color collColor = Color.blue;
     Color deathPlaneColor = Color.red;
@@ -22,6 +24,7 @@ public class AutoscrollController : MonoBehaviour
         if (moveCamera == 0 && Input.GetKeyDown(KeyCode.Mouse0))
         {
             ActivateCamera();
+            trashGenerator.StartTrash();
         }
 
         // Move the camera up slowly
