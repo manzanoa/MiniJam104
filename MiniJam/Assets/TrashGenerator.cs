@@ -19,7 +19,7 @@ public class TrashGenerator : MonoBehaviour
         while(!frog.GetComponent<FrogMovement>().gameOver)
         {
             int num = Random.Range(0, 5);
-            int x = Random.Range(0, 5);
+            int x = Random.Range(0, 4);
 
             GameObject trash = Instantiate(trashes[x], points[num].transform.position, Quaternion.identity);
 

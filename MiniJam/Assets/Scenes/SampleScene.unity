@@ -1300,6 +1300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 754939931}
   - component: {fileID: 754939932}
+  - component: {fileID: 754939933}
   m_Layer: 0
   m_Name: Top Collider
   m_TagString: Untagged
@@ -1317,7 +1318,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1721133851}
+  - {fileID: 1384972744}
+  - {fileID: 2129545200}
+  - {fileID: 966616274}
+  - {fileID: 2058532058}
   m_Father: {fileID: 1200959237}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1347,6 +1353,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &754939933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754939930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823218da6f900410aaa03301ab8e0a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 1721133851}
+  - {fileID: 1384972744}
+  - {fileID: 2129545200}
+  - {fileID: 966616274}
+  - {fileID: 2058532058}
+  trashes:
+  - {fileID: 2727293919322725647, guid: 998cd9f42aac345469c2306aa1603d3f, type: 3}
+  - {fileID: 1095297942957651186, guid: 20e26b757c208d64ab01bef1947c58a1, type: 3}
+  - {fileID: 3340721018886468121, guid: 23cf937b6a8553f499ac094b31a5835d, type: 3}
+  - {fileID: 8470665154515494697, guid: 6881f82a4f78cd044a3b54307c8b648d, type: 3}
+  frog: {fileID: 51613722}
+  time: 10
 --- !u!1001 &775286183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1494,6 +1525,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &966616273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966616274}
+  m_Layer: 0
+  m_Name: TrashPoint4
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966616274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966616273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.76, y: -1.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 754939931}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1023829756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,6 +1888,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1384972743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1384972744}
+  m_Layer: 0
+  m_Name: TrashPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1384972744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384972743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.8, y: -1.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 754939931}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388780661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,6 +2553,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 15}
   m_EdgeRadius: 0
+--- !u!1 &1721133850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721133851}
+  m_Layer: 0
+  m_Name: TrashPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1721133851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721133850}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.39, y: -1.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 754939931}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1769424790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,6 +2942,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2058532057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058532058}
+  m_Layer: 0
+  m_Name: TrashPoint5
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058532058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058532057}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.35, y: -1.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 754939931}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2129545199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129545200}
+  m_Layer: 0
+  m_Name: TrashPoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2129545200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129545199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.08, y: -1.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 754939931}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &216474537569590889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3078,7 +3259,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6528637665324850272, guid: 6881f82a4f78cd044a3b54307c8b648d, type: 3}
       propertyPath: m_Constraints
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7857086846085432872, guid: 6881f82a4f78cd044a3b54307c8b648d, type: 3}
       propertyPath: m_RootOrder
@@ -3253,7 +3434,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2727293919322725646, guid: 998cd9f42aac345469c2306aa1603d3f, type: 3}
       propertyPath: m_Constraints
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2727293919322725647, guid: 998cd9f42aac345469c2306aa1603d3f, type: 3}
       propertyPath: m_Name
@@ -3448,7 +3629,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1031134845486367007, guid: 23cf937b6a8553f499ac094b31a5835d, type: 3}
       propertyPath: m_Constraints
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3023208307285028883, guid: 23cf937b6a8553f499ac094b31a5835d, type: 3}
       propertyPath: m_RootOrder
@@ -3744,7 +3925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5532657310604258087, guid: 20e26b757c208d64ab01bef1947c58a1, type: 3}
       propertyPath: m_Constraints
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20e26b757c208d64ab01bef1947c58a1, type: 3}
