@@ -1397,6 +1397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGM Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 216474537046330514, guid: 7b304f49b43569240827d46945056843, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 216474537046330516, guid: 7b304f49b43569240827d46945056843, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1990,6 +1994,7 @@ MonoBehaviour:
   top: {fileID: 754939932}
   deathPlaneColl2D: {fileID: 1023829758}
   frog: {fileID: 51613722}
+  BGMController: {fileID: 1360193228}
 --- !u!1 &1219509024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,6 +2143,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1360193228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 216474537046330519, guid: 7b304f49b43569240827d46945056843, type: 3}
+  m_PrefabInstance: {fileID: 691461926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ed1ad3c455ddb48a2f0fae0ed91536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1384972743
 GameObject:
   m_ObjectHideFlags: 0
