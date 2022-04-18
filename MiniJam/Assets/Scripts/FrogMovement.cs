@@ -66,14 +66,12 @@ public class FrogMovement : MonoBehaviour
         // since it's physics based, we handle the actual jump in FixedUpdate
         if (grounded && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if(movement > 0)
+            if (movement > 0)
             {
-                Debug.Log("jumped!");
                 lr.enabled = false;
 
                 // Determine facing direction
                 float angle = Mathf.Atan2(Mathf.Abs(towardsCursor.y), towardsCursor.x) * Mathf.Rad2Deg;
-                Debug.Log(angle);
                 if (angle > 100) // left
                 {
                     anim.SetBool("IsForward", false);
@@ -100,21 +98,21 @@ public class FrogMovement : MonoBehaviour
             {
                 gameOver = true;
             }
-            
+
         }
 
         // Check if we just landed and update anim
         if (!lastGrounded && grounded)
         {
-            Debug.Log("landed!");
             anim.SetTrigger("Land");
             lr.enabled = true;
         }
 
-        if(gameOver)
+        if (gameOver)
         {
             GameObject gos = Instantiate(gameOverScreen, canvas.transform.position, Quaternion.identity);
             gos.GetComponent<Transform>().SetParent(canvas.transform);
+            this.enabled = false;
         }
 
         lastGrounded = grounded;
@@ -132,7 +130,7 @@ public class FrogMovement : MonoBehaviour
         {
             jump = false;
             rb.AddForce(towardsCursor * jumpStrength, ForceMode2D.Impulse);
-            
+
         }
 
     }
