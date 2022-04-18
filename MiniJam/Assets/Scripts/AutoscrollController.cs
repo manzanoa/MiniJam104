@@ -8,7 +8,7 @@ public class AutoscrollController : MonoBehaviour
     public float CAMERA_SPEED = 1f; // Camera speed in UU per second
     public BoxCollider2D left, right, top, deathPlaneColl2D;
     public GameObject frog;
-    public BGMController BGMController;
+    public GameObject BGMController;
     private int moveCamera = 0;
 
     // Used to draw collision boxes in editor
@@ -20,7 +20,6 @@ public class AutoscrollController : MonoBehaviour
     {
         if(moveCamera == 0 && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("Pressed");
             ActivateCamera(); 
         }
 
@@ -29,14 +28,15 @@ public class AutoscrollController : MonoBehaviour
 
         if(frog.GetComponent<FrogMovement>().gameOver)
         {
-            CAMERA_SPEED = 0;
+            BGMController.SetActive(false);
+            moveCamera = 0;
         }
     }
 
     public void ActivateCamera()
     {
         moveCamera = 1;
-        BGMController.StartLoop();
+        BGMController.GetComponent<BGMController>().StartLoop();
     }
 
     // Draw the OOB box in the editor
