@@ -59,6 +59,9 @@ TagManager:
   - name: Player Sprite
     uniqueID: 3520984191
     locked: 0
+  - name: Foliage
+    uniqueID: 1360932059
+    locked: 0
   - name: GameOver
     uniqueID: 350119041
     locked: 0
