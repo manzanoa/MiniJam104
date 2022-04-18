@@ -116,7 +116,7 @@ public class FrogMovement : MonoBehaviour
         }
 
         lastGrounded = grounded;
-        text.text = movement.ToString();
+        text.text = "Jumps:\n" + movement.ToString();
     }
 
     void FixedUpdate()
