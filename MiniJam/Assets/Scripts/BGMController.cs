@@ -12,10 +12,12 @@ public class BGMController : MonoBehaviour
     private double time;
     private int nextSource;
     private double nextEventTime;
+    private bool play;
 
     // Start is called before the first frame update
     void Start()
     {
+        play = false;
         loopLength = audioClip.length - loopPoint;
 
         // create two audiosources
@@ -23,11 +25,8 @@ public class BGMController : MonoBehaviour
         {
             musicSources[i] = gameObject.AddComponent<AudioSource>();
             musicSources[i].clip = audioClip;
+            musicSources[i].Stop();
         }
-
-        musicSources[0].Play();
-        nextEventTime = AudioSettings.dspTime + loopPoint + loopLength;
-        nextSource = 1;
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class BGMController : MonoBehaviour
         t1 = musicSources[1].time;
 
         // Check 2 seconds ahead, just to be safe if loading/frame issues occur
-        if (time + 2f > nextEventTime)
+        if (play && time + 2f > nextEventTime)
         {
             // Schedule the audio to play 
             musicSources[nextSource].time = loopPoint;
@@ -49,5 +48,13 @@ public class BGMController : MonoBehaviour
             nextEventTime += loopLength;
             nextSource = 1 - nextSource; //Switch to other AudioSource
         }
+    }
+
+    public void StartLoop()
+    {
+        play = true;
+        musicSources[0].Play();
+        nextEventTime = AudioSettings.dspTime + loopPoint + loopLength;
+        nextSource = 1;
     }
 }

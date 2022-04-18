@@ -8,12 +8,9 @@ public class DeathPlane : MonoBehaviour
     public Canvas canvas;
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other);
-
-
         if (other.CompareTag("Player"))
         {
-            
+
             GameObject gos = Instantiate(gameOverScreen, canvas.transform.position, Quaternion.identity);
             gos.GetComponent<Transform>().SetParent(canvas.transform);
             // TODO kill the player
@@ -21,6 +18,5 @@ public class DeathPlane : MonoBehaviour
         }
 
         Destroy(other);
-
     }
 }
