@@ -2040,7 +2040,7 @@
     "m_Guid": {
         "m_GuidSerialized": "3c2d2f05-3ea7-497b-9f9d-00b0885823a2"
     },
-    "m_Name": "Waterfall Base",
+    "m_Name": "_Color",
     "m_DefaultReferenceName": "Color_56082635511b494ca2697f53c1be5cc1",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,

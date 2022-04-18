@@ -1863,6 +1863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370209950}
   - component: {fileID: 370209949}
+  - component: {fileID: 370209951}
   m_Layer: 0
   m_Name: Waterfall
   m_TagString: Untagged
@@ -1911,7 +1912,7 @@ SpriteRenderer:
   m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270, type: 3}
-  m_Color: {r: 0.6650944, g: 1, b: 0.94522315, a: 1}
+  m_Color: {r: 0.3443396, g: 1, b: 0.9945353, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1935,6 +1936,20 @@ Transform:
   m_Father: {fileID: 1200959237}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &370209951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370209948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6ffa9abd03fd549ba6c3e13e72a0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  init: {r: 0, g: 0, b: 0, a: 0}
+  final: {r: 0.29019612, g: 0.7254902, b: 0.38881212, a: 1}
 --- !u!1001 &416775301
 PrefabInstance:
   m_ObjectHideFlags: 0
