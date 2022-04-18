@@ -3570,7 +3570,7 @@ MonoBehaviour:
   - {fileID: 3340721018886468121, guid: 23cf937b6a8553f499ac094b31a5835d, type: 3}
   - {fileID: 8470665154515494697, guid: 6881f82a4f78cd044a3b54307c8b648d, type: 3}
   frog: {fileID: 51613722}
-  time: 20
+  time: 30
 --- !u!1001 &775286183
 PrefabInstance:
   m_ObjectHideFlags: 0
