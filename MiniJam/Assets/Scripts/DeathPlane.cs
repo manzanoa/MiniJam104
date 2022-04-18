@@ -12,7 +12,5 @@ public class DeathPlane : MonoBehaviour
         {
             other.GetComponent<FrogMovement>().gameOver = true;
         }
-
-        Destroy(other);
     }
 }
