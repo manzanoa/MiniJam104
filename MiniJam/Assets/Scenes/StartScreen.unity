@@ -1844,10 +1844,10 @@ MonoBehaviour:
     Peake
 
 
-    LEVEL DESIGN:
+    LEVEL DESIGN/TECHNICAL
+    ART:
 
-    Kendall
-    Kelly
+    Kendall Kelly
 
 
     MUSIC:
@@ -1857,16 +1857,16 @@ MonoBehaviour:
 
     PROGRAMMING:
 
-    Cassidy Coates
+    Cassidy
+    Coates
 
-    Adrian
-    Manzano
+    Adrian Manzano
 
 
     Birds Chirping Sound Effect - Spanac - CC 4.0
 
-    Waterfall Sound
-    Effect - Alexander - CC 4.0'
+    Waterfall
+    Sound Effect - Alexander - CC 4.0'
 --- !u!222 &1472455590
 CanvasRenderer:
   m_ObjectHideFlags: 0
