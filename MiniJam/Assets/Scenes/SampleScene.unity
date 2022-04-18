@@ -190,7 +190,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 2149245479201688128, guid: 6d2969e1614d64a758cf0271499bcbdb, type: 3}
   gameOver: 0
   grounded: 0
-  movement: 0
+  movement: 20
   jumpStrength: 9
 --- !u!212 &51613725
 SpriteRenderer:
@@ -1751,7 +1751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4478268885341428942, guid: 89be9a5f0d4189548a57357434332532, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.71
+      value: 23.51
       objectReference: {fileID: 0}
     - target: {fileID: 4478268885341428942, guid: 89be9a5f0d4189548a57357434332532, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3080,7 +3080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4393204427604099545, guid: 6a6abfdddad481d4f8fb0ee70bf1acd6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26.68
+      value: 26.54
       objectReference: {fileID: 0}
     - target: {fileID: 4393204427604099545, guid: 6a6abfdddad481d4f8fb0ee70bf1acd6, type: 3}
       propertyPath: m_LocalPosition.z
