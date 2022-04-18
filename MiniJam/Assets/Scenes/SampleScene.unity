@@ -9296,7 +9296,7 @@ MonoBehaviour:
   frog: {fileID: 51613722}
   BGMController: {fileID: 691461928}
   AmbientController: {fileID: 1598229769}
-  trashGenerator: {fileID: 0}
+  trashGenerator: {fileID: 754939933}
 --- !u!1001 &1217680446
 PrefabInstance:
   m_ObjectHideFlags: 0
