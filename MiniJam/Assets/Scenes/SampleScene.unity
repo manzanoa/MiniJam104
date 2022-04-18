@@ -5064,7 +5064,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcffeda5c114a854d93ccee13d68ac30, type: 3}
-<<<<<<< Updated upstream
 --- !u!1 &1598229769
 GameObject:
   m_ObjectHideFlags: 0
@@ -5302,7 +5301,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-=======
 --- !u!1001 &1530159652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5360,7 +5358,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d22c9e2a8aac3141888d3a5c2bc8f56, type: 3}
->>>>>>> Stashed changes
 --- !u!1001 &1616609841
 PrefabInstance:
   m_ObjectHideFlags: 0
