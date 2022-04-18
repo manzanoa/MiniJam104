@@ -44,6 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: MidBackground
+    uniqueID: 1485143203
+    locked: 0
   - name: Player Sprite
     uniqueID: 3520984191
     locked: 0
