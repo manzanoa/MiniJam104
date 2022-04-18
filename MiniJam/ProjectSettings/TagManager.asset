@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Waterfall
+    uniqueID: 571978821
+    locked: 0
+  - name: BackgroundPlatforms
+    uniqueID: 2922501985
+    locked: 0
   - name: Background
     uniqueID: 3286721157
     locked: 0
