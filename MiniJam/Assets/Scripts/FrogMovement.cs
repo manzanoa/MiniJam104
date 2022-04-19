@@ -28,6 +28,7 @@ public class FrogMovement : MonoBehaviour
     private float gravity;
     private Vector2 towardsCursor;
     private bool jump;
+    private bool isTrackingMouse;
     public float jumpStrength = 8f; // The force to apply to the frog when it jumps
 
     private void Start()
@@ -41,6 +42,7 @@ public class FrogMovement : MonoBehaviour
         jump = false;
         groundCheckBox = new Vector2(groundCheckSideLength, 0.2f);
         lastGrounded = false;
+        isTrackingMouse = true;
         anim = GetComponent<Animator>();
     }
 
@@ -48,16 +50,18 @@ public class FrogMovement : MonoBehaviour
     {
         anim.ResetTrigger("Land");
 
-        // Test if the player is on the ground for animation-switching purposes
+        // Test if the player is on the ground
         grounded = Physics2D.OverlapBox(groundCheck.position, groundCheckBox, 0, ground) != null;
 
         // Get a normalized vector pointing towards the mouse cursor
-        // **This can probably be used for movement as well (add a force to the RB in the direction specified by towardsCursor?)**
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, transform.position.y + 4.5f);
-        towardsCursor = mousePos2D - new Vector2(transform.position.x, transform.position.y);
-        towardsCursor.Normalize();
-        towardsCursor = new Vector2(towardsCursor.x, Mathf.Abs(towardsCursor.y));
+        if (isTrackingMouse)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, transform.position.y + 4.5f);
+            towardsCursor = mousePos2D - new Vector2(transform.position.x, transform.position.y);
+            towardsCursor.Normalize();
+            towardsCursor = new Vector2(towardsCursor.x, Mathf.Abs(towardsCursor.y));
+        }
 
         // Update the dashed line based on cursor position
         UpdatePreviewLine(towardsCursor);
@@ -93,6 +97,7 @@ public class FrogMovement : MonoBehaviour
 
                 anim.SetTrigger("Jump");
                 movement--;
+                isTrackingMouse = false;
             }
             else
             {
@@ -106,6 +111,7 @@ public class FrogMovement : MonoBehaviour
         {
             anim.SetTrigger("Land");
             lr.enabled = true;
+            isTrackingMouse = true;
         }
 
         if (gameOver)
