@@ -10,6 +10,7 @@ public class TimeReducer : MonoBehaviour
         if(collision.tag == "Player")
         {
             trashGenerator.time -= 5;
+            Destroy(this);
         }
     }
 }

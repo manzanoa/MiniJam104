@@ -11,6 +11,10 @@ public class TrashGenerator : MonoBehaviour
 
     public void StartTrash()
     {
+        int x = Random.Range(0, 4);
+
+        GameObject trash = Instantiate(trashes[x], points[1].transform.position, Quaternion.identity);
+
         StartCoroutine(trashSpawn());
     }
 
@@ -18,14 +22,12 @@ public class TrashGenerator : MonoBehaviour
     {
         while(!frog.GetComponent<FrogMovement>().gameOver)
         {
+            yield return new WaitForSeconds(time);
+
             int num = Random.Range(0, 5);
             int x = Random.Range(0, 4);
 
             GameObject trash = Instantiate(trashes[x], points[num].transform.position, Quaternion.identity);
-
-            yield return new WaitForSeconds(time);
         }
     }
-
-
 }

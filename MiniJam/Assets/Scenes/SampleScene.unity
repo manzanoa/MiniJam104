@@ -390,7 +390,7 @@ MonoBehaviour:
   lr: {fileID: 299183551}
   segments: 50
   groundCheck: {fileID: 1769424791}
-  groundCheckSideLength: 0.9689696
+  groundCheckSideLength: 0.776
   ground:
     serializedVersion: 2
     m_Bits: 64
@@ -491,7 +491,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21212655, y: 0.1837725}
+  m_Size: {x: 0.194, y: 0.1637725}
   m_EdgeRadius: 0
 --- !u!95 &51613728
 Animator:
