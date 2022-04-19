@@ -388,7 +388,7 @@ MonoBehaviour:
   speed: 1
   text: {fileID: 1463469134}
   lr: {fileID: 299183551}
-  segments: 50
+  segments: 75
   groundCheck: {fileID: 1769424791}
   groundCheckSideLength: 0.776
   ground:
@@ -1352,7 +1352,7 @@ GameObject:
   m_Layer: 3
   m_Name: Preview Line
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1364,7 +1364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299183549}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.005, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 51613726}
@@ -11984,7 +11984,7 @@ GameObject:
   m_Layer: 3
   m_Name: Ground Check
   m_TagString: Untagged
-  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

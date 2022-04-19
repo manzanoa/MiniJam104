@@ -156,14 +156,14 @@ public class FrogMovement : MonoBehaviour
         float length = 3f;
         Vector2 towardsTargetPos = dir * jumpStrength;
 
-        previewPositions[0] = transform.position;
+        previewPositions[0] = lr.transform.position;
 
         // Physics!
         for (int i = 1; i < previewPositions.Length; i++)
         {
             // This is the general equation for an object under constant acceleration applied to both x and y coords
             // x = 1/2at^2 + v0t + x0
-            // x0 is always 0, since we're starting at the frog's location
+            // x0 is always 0 on both axes, since we're starting at the frog's location
             float t = length * i / vertices; // we discretize t because we're drawing a bunch of short line segments rather than a true curve
             // split the initial velocity into x and y components
             float vx = towardsTargetPos.x;
@@ -172,7 +172,7 @@ public class FrogMovement : MonoBehaviour
             float x = vx * t;
             float y = (0.5f * gravity * t * t) + (vy * t);
             // add the calculated position to the array
-            previewPositions[i] = new Vector3(transform.position.x + x, transform.position.y + y, 0);
+            previewPositions[i] = new Vector3(lr.transform.position.x + x, lr.transform.position.y + y, 0);
         }
 
         // More efficient than setting each position individually, according to the unity docs
