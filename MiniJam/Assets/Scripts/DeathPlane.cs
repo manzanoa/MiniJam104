@@ -10,7 +10,7 @@ public class DeathPlane : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<FrogMovement>().gameOver = true;
+            other.GetComponent<FrogMovement>().setGameOver();
         }
     }
 }

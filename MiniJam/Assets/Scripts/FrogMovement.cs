@@ -14,7 +14,8 @@ public class FrogMovement : MonoBehaviour
     public LayerMask ground;
     private Vector2 groundCheckBox;
     private bool lastGrounded;
-    private Animator anim;
+    public Animator anim;
+    public TrashGenerator trashGenerator;
 
     public Canvas canvas;
     public GameObject gameOverScreen;
@@ -28,8 +29,17 @@ public class FrogMovement : MonoBehaviour
     private float gravity;
     private Vector2 towardsCursor;
     private bool jump;
-    private bool isTrackingMouse;
+    public bool isTrackingMouse;
     public float jumpStrength = 8f; // The force to apply to the frog when it jumps
+
+    public bool firstIfAccessible = false;
+    public bool isClicked = false;
+    public float angle;
+
+    public bool isLeft = false;
+    public bool isRight = false;
+    public bool isForward;
+
 
     private void Start()
     {
@@ -50,9 +60,8 @@ public class FrogMovement : MonoBehaviour
     {
         anim.ResetTrigger("Land");
 
-        // Test if the player is on the ground
-        grounded = Physics2D.OverlapBox(groundCheck.position, groundCheckBox, 0, ground) != null;
-
+        
+        //CANNOT TEST DUE TO NEEDING INPUT
         // Get a normalized vector pointing towards the mouse cursor
         if (isTrackingMouse)
         {
@@ -61,21 +70,32 @@ public class FrogMovement : MonoBehaviour
             towardsCursor = mousePos2D - new Vector2(transform.position.x, transform.position.y);
             towardsCursor.Normalize();
             towardsCursor = new Vector2(towardsCursor.x, Mathf.Abs(towardsCursor.y));
+            firstIfAccessible = true;
         }
 
         // Update the dashed line based on cursor position
         UpdatePreviewLine(towardsCursor);
 
+        //
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            isClicked = true;
+            angle = Mathf.Atan2(Mathf.Abs(towardsCursor.y), towardsCursor.x) * Mathf.Rad2Deg;
+            // Test if the player is on the ground
+            grounded = Physics2D.OverlapBox(groundCheck.position, groundCheckBox, 0, ground) != null;
+        }
+
         // Movement 
         // since it's physics based, we handle the actual jump in FixedUpdate
-        if (grounded && Input.GetKeyDown(KeyCode.Mouse0))
+        if (grounded && isClicked)
         {
+            isClicked = false;
             if (movement > 0)
             {
                 lr.enabled = false;
 
                 // Determine facing direction
-                float angle = Mathf.Atan2(Mathf.Abs(towardsCursor.y), towardsCursor.x) * Mathf.Rad2Deg;
+                
                 if (angle > 100) // left
                 {
                     anim.SetBool("IsForward", false);
@@ -93,6 +113,7 @@ public class FrogMovement : MonoBehaviour
                     anim.SetBool("IsForward", true);
                     anim.SetBool("IsLeft", false);
                     anim.SetBool("IsRight", false);
+                    
                 }
 
                 anim.SetTrigger("Jump");
@@ -101,7 +122,7 @@ public class FrogMovement : MonoBehaviour
             }
             else
             {
-                gameOver = true;
+                setGameOver();
             }
 
         }
@@ -110,7 +131,7 @@ public class FrogMovement : MonoBehaviour
         if (!lastGrounded && grounded)
         {
             anim.SetTrigger("Land");
-            lr.enabled = true;
+            //lr.enabled = true;
             isTrackingMouse = true;
         }
 
@@ -131,7 +152,7 @@ public class FrogMovement : MonoBehaviour
         // left: 18
         // right: 18
 
-        // Jump when there are moves left
+        // Jump
         if (jump)
         {
             jump = false;
@@ -178,4 +199,13 @@ public class FrogMovement : MonoBehaviour
         // More efficient than setting each position individually, according to the unity docs
         lr.SetPositions(previewPositions);
     }
+
+    public void setGameOver()
+    {
+        gameOver = true;
+        trashGenerator.gameover = true;
+    }
+
 }
+
+

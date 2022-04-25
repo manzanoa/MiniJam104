@@ -394,12 +394,21 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+  anim: {fileID: 51613728}
+  trashGenerator: {fileID: 754939933}
   canvas: {fileID: 1955824764}
   gameOverScreen: {fileID: 2149245479201688128, guid: 6d2969e1614d64a758cf0271499bcbdb, type: 3}
   gameOver: 0
   grounded: 0
   movement: 35
+  isTrackingMouse: 0
   jumpStrength: 9
+  firstIfAccessible: 0
+  isClicked: 0
+  angle: 0
+  isLeft: 0
+  isRight: 0
+  isForward: 0
 --- !u!212 &51613725
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3659,6 +3668,8 @@ MonoBehaviour:
   - {fileID: 8470665154515494697, guid: 6881f82a4f78cd044a3b54307c8b648d, type: 3}
   frog: {fileID: 51613722}
   time: 30
+  trash: {fileID: 0}
+  gameover: 0
 --- !u!1001 &775286183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9384,6 +9395,11 @@ MonoBehaviour:
   frog: {fileID: 51613722}
   BGMController: {fileID: 691461928}
   AmbientController: {fileID: 1598229769}
+  moveCamera: 0
+  cameraActivated: 0
+  fadeOutComplete: 0
+  isClicked: 0
+  drawGizmosPassed: 0
   trashGenerator: {fileID: 754939933}
 --- !u!1001 &1217680446
 PrefabInstance:

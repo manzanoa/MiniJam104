@@ -8,25 +8,26 @@ public class TrashGenerator : MonoBehaviour
     public List<GameObject> trashes = new List<GameObject>();
     public GameObject frog;
     public float time = 10;
+    public GameObject trash;
+    public bool gameover = false;
 
     public void StartTrash()
     {
-        int x = Random.Range(0, 4);
-        GameObject trash = Instantiate(trashes[x], points[1].transform.position, Quaternion.identity);
-        
         StartCoroutine(trashSpawn());
     }
 
     IEnumerator trashSpawn()
     {
-        while (!frog.GetComponent<FrogMovement>().gameOver)
+        while(!gameover)
         {
-            yield return new WaitForSeconds(time);
-
             int num = Random.Range(0, 5);
             int x = Random.Range(0, 4);
 
-            GameObject trash = Instantiate(trashes[x], points[num].transform.position, Quaternion.identity);
+            trash = Instantiate(trashes[x], points[num].transform.position, Quaternion.identity);
+
+            yield return new WaitForSeconds(time);
         }
     }
+
+
 }

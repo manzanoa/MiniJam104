@@ -10,7 +10,11 @@ public class AutoscrollController : MonoBehaviour
     public GameObject frog;
     public GameObject BGMController;
     public GameObject AmbientController;
-    private int moveCamera = 0;
+    public int moveCamera = 0;
+    public bool cameraActivated = false;
+    public bool fadeOutComplete = false;
+    public bool isClicked = false;
+    public bool drawGizmosPassed = false;
 
     public TrashGenerator trashGenerator;
 
@@ -21,10 +25,16 @@ public class AutoscrollController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moveCamera == 0 && Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            setIsClicked(true);
+        }
+
+        if (moveCamera == 0 && isClicked)
         {
             ActivateCamera();
             trashGenerator.StartTrash();
+            setIsClicked(false);
         }
 
         // Move the camera up slowly
@@ -37,14 +47,21 @@ public class AutoscrollController : MonoBehaviour
         }
     }
 
+    public void setIsClicked(bool x)
+    {
+        isClicked = x;
+    }
+
+
     public void ActivateCamera()
     {
         moveCamera = 1;
-        BGMController.GetComponent<BGMController>().StartLoop();
+        //BGMController.GetComponent<BGMController>().StartLoop();
         foreach (AudioSource source in AmbientController.GetComponents<AudioSource>())
         {
             StartCoroutine(FadeOut(source, 0.75f));
         }
+        cameraActivated = true;
     }
 
     // Fade out the ambient noise.
@@ -52,10 +69,13 @@ public class AutoscrollController : MonoBehaviour
     public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
     {
         float startVolume = audioSource.volume;
+        audioSource.tag = "not in loop";
+        
 
         while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            audioSource.tag = "in loop";
 
             yield return null;
         }
@@ -73,6 +93,7 @@ public class AutoscrollController : MonoBehaviour
         Gizmos.DrawWireCube(top.transform.position, top.size);
         Gizmos.color = deathPlaneColor;
         Gizmos.DrawWireCube(deathPlaneColl2D.transform.position, deathPlaneColl2D.size);
+        drawGizmosPassed = true;
     }
 
 }
